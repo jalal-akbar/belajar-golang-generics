@@ -1,7 +1,7 @@
 # belajar-golang-generics
 
 # Pengenalan-Generics
-- (1). Generic
+(1). Generic
 - Generic adalah kemampuan menambahkan parameter type saat membuat function
 - Berbeda dengan tipe data yang biasa kita gunakan di function, generic memungkinkan kita bisa mengubah-ubah bentuk tipe data sesuai dengan yang - kita mau.
 - Fitur generics baru ada sejak Go-Lang versi 1.18
