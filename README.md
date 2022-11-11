@@ -1,14 +1,21 @@
 # belajar-golang-generics
-## Content
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-# Pengenalan Generics
+## Contents
+- [Contents](#Contents)
+- [Pengenalan Generics](#Pengenalan-Generics)
+- [Membuat Projek](#Membuat-Project)
+- [Type Paramater](#TypeParamater)
+- [Multiple Type Paramater](#Multiple-Type-Paramater)
+- [Comparable](#Comparable)
+- [Type Parameter Inheritance](#Type-Parameter-Inheritance)
+- [Type Sets](#Type-Sets)
+- [Type Approximation](#Type-Approximation)
+- [Type Inference](#Type-Inference)
+- [Generic Type](#Generic-Type)
+- [Generic Struct](#Generic-Struct)
+- [Generic Interface](#Generic-Interface)
+- [In Line Type Constaint](#In-Line-Type-Constaint)
+- [Experimental Package](#Experimental-Package)
+# Pengenalan-Generics
 (1). Generic
 - Generic adalah kemampuan menambahkan parameter type saat membuat function
 - Berbeda dengan tipe data yang biasa kita gunakan di function, generic memungkinkan kita bisa mengubah-ubah bentuk tipe data sesuai dengan yang - kita mau.
@@ -18,13 +25,14 @@
 - Tidak perlu manual menggunakan pengecekan tipe data dan konversi tipe data
 - Memudahkan programmer membuat kode program yang generic sehingga bisa digunakan oleh berbagai tipe data_
 
-# Membuat Project
+# Membuat-Project
 ```go
 go mod init nama_project
 go get github.com/stretchr/testify
 ```
 
-# Type Parameter
+# Type-Parameter
+- [Type Parameter](#Type-Parameter)
 (1). Tipe Paramater
 - Untuk menandai sebuah function merupakan tipe generic, kita perlu menambahkan Type Parameter pada function tersebut
 - Pembuatan Type Parameter menggunakan tanda [] (kurung kotak), dimana di dalam kurung kotak 
@@ -50,7 +58,7 @@ tersebut sebagai tipe data di dalam function tersebut
 - Kita cukup gunakan nama Type Parameter nya saja
 - Type Parameter hanya bisa digunakan di functionnya saja, tidak bisa digunakan di luar function
 
-# Multiple Type Parameter
+# Multiple-Type-Parameter
 - Penggunakan Type Parameter bisa lebih dari satu, jika kita ingin menambahkan multiple Type Parameter, 
 kita cukup gunakan tanda , (koma) sebagai pemisah antar Type Parameter
 - Nama Type Parameter harus berbeda, tidak boleh sama jika kita menambah Type Parameter lebih dari satu
@@ -59,7 +67,7 @@ kita cukup gunakan tanda , (koma) sebagai pemisah antar Type Parameter
 - Selain any, di Go-Lang versi 1.18 juga terdapat tipe data bernama comparable
 - Comparable merupakan interface yang diimplementasikan oleh tipe data yang bisa dibandingkan (menggunakan operator != dan ==), seperti booleans, numbers, strings, pointers, channels, interfaces, array yang isinya ada comparable type, atau structs yang fields nya adalah comparable type
 
-# Type Parameter Inheritance
+# Type-Parameter-Inheritance
 - Go-Lang sendiri sebenarnya tidak memiliki pewarisan, namun seperti kita ketahui, jika kita membuat sebuah type yang sesuai dengan kontrak interface, maka dianggap sebagai implementasi interface tersebut
 - Type Parameter juga mendukung hal serupa, kita bisa gunakan constraint dengan menggunakan interface, maka secara otomatis semua interface yang compatible dengan type constraint tersebut bisa kita gunakan
 - Diagram
@@ -67,7 +75,7 @@ kita cukup gunakan tanda , (koma) sebagai pemisah antar Type Parameter
 https://go.dev/blog/intro-generics
 ```
 
-# Type Sets
+# Type-Sets
 - Salah satu fitur yang menarik di Go-Lang Generic adalah Type Sets
 - Dengan fitur ini, kita bisa menentukan lebih dari satu tipe constraint yang diperbolehkan pada type parameter
 ()Membuat Type Set
@@ -79,7 +87,7 @@ type NamaTypeSet interface {
 - TypeSet hanya bisa digunakan pada type parameter, tidak bisa digunakan sebagai tipe data field atau variable
 - Jika operator bisa digunakan di semua tipe data di dalam type set, maka operator tersebut bisa digunakan dalam kode generic
 
-# Type Approximation
+# Type-Approximation
 - (1) Type Declaration
     - Kadang, kita sering membuat Type Declaration di Golang untuk tipe data lain, misal kita membuat tipe data Age untuk tipe data int
     - Secara default, jika kita gunakan Age sebagai type declaration untuk int, lalu kita membuat Type 
@@ -91,17 +99,17 @@ type NamaTypeSet interface {
       adalah tipe tersebut, maka bisa digunakan
     - Untuk menggunakan Type Approximation, kita bisa gunakan tanda ~ (tilde)
 
-# Type Inference
+# Type-Inference
 - Type Inference merupakan fitur dimana kita tidak perlu menyebutkan Type Parameter ketika memanggil kode generic
 - Tipe data Type Parameter bisa dibaca secara otomatis misal dari parameter yang kita kirim
 - Namun perlu diingat, pada beberapa kasus, jika terjadi error karena Type Inference, kita bisa 
 dengan mudah memperbaikinya dengan cara menyebutkan Type Parameter nya saja
 
-# Generic Type
+# Generic-Type
 - Sebelumnya kita sudah bahas tentang generic di function
 - Generic juga bisa digunakan ketika membuat type
 
-# Generic Struct
+# Generic-Struct
 - (1) Struct
     - Struct juga mendukung generic
     - Dengan menggunakan generic, kita bisa membuat Field dengan tipe data yang sesuai dengan Type Parameter
@@ -113,11 +121,11 @@ dengan mudah memperbaikinya dengan cara menyebutkan Type Parameter nya saja
      pengganti type parameter nya
     - Method tidak bisa memiliki type parameter yang mirip dengan di function
 
-# Generic Interface
+# Generic-Interface
 - Generic juga bisa kita gunakan di Interface
 - Secara otomatis, semua struct yang ingin mengikuti kontrak interface tersebut harus menggunakan generic juga
 
-# In Line Type Constraint
+# In-Line-Type-Constraint
 - (1) In Line Type Constraint
 - Sebelum-sebelumnya, kita selalu menggunakan type declaration atau type set ketika membuat 
 type constraint di type parameter
@@ -134,7 +142,7 @@ type constraint di type parameter
 - [S interface{[]E}, E interface{}], artinya S harus slice element E, dimana E boleh tipe apapun
 - [S []E, E any], artinya S harus slice element E, dimana E boleh tipe apapun
 
-# Experimental Package
+# Experimental-Package
 - (1) Experimental Package
 - Saat versi Go-Lang 1.18, terdapat experimental package yang banyak menggunakan fitur Generic, namun belum resmi masuk ke Go-Lang Standard Library
 - Kedepannya, karena ini masih experimental (percobaan), bisa jadi package ini akan berubah atau bahkan mungkin akan dihapus
